@@ -4,6 +4,8 @@ namespace ZfcTwig\View;
 
 use Twig_Environment;
 use Twig_Error_Loader;
+use Twig_Error_Syntax;
+use Twig_TemplateInterface;
 use Zend\View\Resolver\ResolverInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 
@@ -29,7 +31,10 @@ class TwigResolver implements ResolverInterface
      *
      * @param  string $name
      * @param  null|Renderer $renderer
-     * @return bool
+     * @return Twig_TemplateInterface
+     *
+     * @throws Twig_Error_Loader When the template cannot be found
+     * @throws Twig_Error_Syntax When an error occurred during compilation
      */
     public function resolve($name, Renderer $renderer = null)
     {
